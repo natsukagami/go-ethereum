@@ -124,6 +124,7 @@ func (hc *httpConn) doRequest(ctx context.Context, msg interface{}) (io.ReadClos
 		return nil, err
 	}
 	req := hc.req.WithContext(ctx)
+	req.Header.Set("Infura-Ethereum-Preferred-Client", "geth")
 	req.Body = ioutil.NopCloser(bytes.NewReader(body))
 	req.ContentLength = int64(len(body))
 
